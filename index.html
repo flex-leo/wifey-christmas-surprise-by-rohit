@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>sorry wifey</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+body{
+margin:0;
+background:linear-gradient(#0b1d3a,#1a3b6e);
+font-family:cursive;
+color:white;
+overflow:hidden;
+text-align:center;
+}
+
+.screen{
+display:none;
+height:100vh;
+width:100vw;
+padding:20px;
+animation:fade 1.2s ease;
+}
+
+.active{display:block}
+
+@keyframes fade{
+from{opacity:0;transform:translatey(30px)}
+to{opacity:1;transform:translatey(0)}
+}
+
+button{
+padding:14px 30px;
+border:none;
+border-radius:30px;
+background:#ff7eb3;
+color:white;
+font-size:18px;
+cursor:pointer;
+box-shadow:0 0 20px #ff7eb3;
+animation:pulse 2s infinite;
+}
+
+@keyframes pulse{
+0%{transform:scale(1)}
+50%{transform:scale(1.08)}
+100%{transform:scale(1)}
+}
+
+.type{
+font-size:26px;
+white-space:pre-line;
+margin-top:40px;
+}
+
+.polaroid{
+background:white;
+padding:12px;
+width:240px;
+margin:30px auto;
+border-radius:8px;
+box-shadow:0 15px 30px rgba(0,0,0,.5);
+transform:rotate(-4deg);
+animation:swing 3s infinite ease-in-out;
+}
+
+@keyframes swing{
+0%{transform:rotate(-4deg)}
+50%{transform:rotate(4deg)}
+100%{transform:rotate(-4deg)}
+}
+
+.polaroid img{
+width:100%;
+border-radius:6px;
+}
+
+.polaroid p{
+color:#ff4d88;
+font-size:16px;
+margin-top:8px;
+}
+
+.snow{
+position:absolute;
+top:-10px;
+color:white;
+animation:snow 10s linear infinite;
+}
+
+@keyframes snow{
+to{transform:translatey(110vh)}
+}
+
+.sorrybox{
+position:fixed;
+top:0;
+left:0;
+width:100vw;
+height:100vh;
+background:radial-gradient(circle,#2b0f1f,#000);
+display:none;
+overflow:hidden;
+z-index:999;
+}
+
+.sorrytext{
+position:absolute;
+color:#ff9acb;
+font-size:22px;
+opacity:0;
+animation:pop 3s forwards;
+white-space:nowrap;
+}
+
+@keyframes pop{
+0%{opacity:0;transform:scale(.5)}
+30%{opacity:1;transform:scale(1.1)}
+100%{opacity:0;transform:translatey(-40px)}
+}
+
+.finalmsg{
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+font-size:28px;
+opacity:0;
+animation:final 4s forwards;
+animation-delay:6s;
+}
+
+@keyframes final{
+to{opacity:1}
+}
+</style>
+</head>
+
+<body>
+
+<div class="screen active" id="s1">
+<div class="type" id="t1"></div>
+<br><br>
+<button onclick="next(2)">aage jao wifey</button>
+</div>
+
+<div class="screen" id="s2">
+<h1>meri wifey 💗</h1>
+<div class="polaroid">
+<img src="wifey.jpg">
+<p>meri sabse pyaari si bacchi</p>
+</div>
+<p style="font-size:22px">
+aap naraz ho toh duniya ruk jaati h
+</p>
+<br>
+<button onclick="startSorry()">meri galti h 😔</button>
+</div>
+
+<div class="sorrybox" id="sorrybox">
+<div class="finalmsg">
+sorryyyyy meri jaan<br><br>
+har sorry sacha h<br>
+har pyaar sirf aapse<br><br>
+please maan jao na meri bacchi 💗
+</div>
+</div>
+
+<audio autoplay loop>
+<source src="https://www.chosic.com/wp-content/uploads/2020/12/Jingle-Bells-Instrumental.mp3">
+</audio>
+
+<script>
+function next(n){
+document.querySelector(".active").classList.remove("active")
+document.getElementById("s"+n).classList.add("active")
+}
+
+function type(el,text,i=0){
+if(i<text.length){
+el.innerHTML+=text.charAt(i)
+setTimeout(()=>type(el,text,i+1),50)
+}
+}
+
+type(
+document.getElementById("t1"),
+"sorryyyyy wifey\n\nmeri galti ho gayi\npar dil sirf aapka h\n\nplease thoda sa maan jao 💗"
+)
+
+const names=[
+"sorryyyyy baby",
+"sorryyyyy jana",
+"sorryyyyy meri bacchi",
+"sorryyyyy sweetheart",
+"sorryyyyy darling",
+"sorryyyyy my wifey",
+"sorryyyyy meri jaan",
+"sorryyyyy cutie",
+"sorryyyyy princess",
+"sorryyyyy meri duniya"
+]
+
+function startSorry(){
+const box=document.getElementById("sorrybox")
+box.style.display="block"
+let i=0
+let loop=setInterval(()=>{
+let t=document.createElement("div")
+t.className="sorrytext"
+t.innerText=names[Math.floor(Math.random()*names.length)]
+t.style.left=Math.random()*90+"vw"
+t.style.top=Math.random()*90+"vh"
+t.style.fontSize=18+Math.random()*20+"px"
+box.appendChild(t)
+i++
+if(i>150)clearInterval(loop)
+},120)
+}
+
+for(let i=0;i<60;i++){
+let s=document.createElement("div")
+s.className="snow"
+s.innerHTML="❄"
+s.style.left=Math.random()*100+"vw"
+s.style.animationDuration=5+Math.random()*5+"s"
+document.body.appendChild(s)
+}
+</script>
+
+</body>
+</html>
+
